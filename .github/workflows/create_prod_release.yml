@@ -3,7 +3,7 @@ name: Create Prod Release
 on:
   push:
     branches:
-      - master
+      - develop
 
 jobs:
   auto-pull-request:
