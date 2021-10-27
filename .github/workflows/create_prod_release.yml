@@ -1,0 +1,25 @@
+name: Create Prod Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  auto-pull-request:
+    name: CreatePullRequest
+    runs-on: ubuntu-latest
+    steps:
+      - name: pull-request-action
+        uses: vsoch/pull-request-action@1.0.18
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PULL_REQUEST_BRANCH: "develop"
+          PULL_REQUEST_TITLE: Production Release
+          PULL_REQUEST_BODY: |
+            # Production Release
+
+            ## Changelog
+            <!--- Please add the list of changes here  -->
+            <!--- Please tag responsible the users with @  -->
+            - < PR Number > @< username >
