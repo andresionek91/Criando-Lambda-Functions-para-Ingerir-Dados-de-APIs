@@ -1,0 +1,68 @@
+name: Create Feature Pull Request
+
+on:
+  push:
+    branches-ignore:
+      - master
+      - develop
+
+jobs:
+  auto-pull-request:
+    name: CreatePullRequest
+    runs-on: ubuntu-latest
+    steps:
+#      - uses: actions/checkout@v2
+      - name: Extract Branch Name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: pull-request-action
+        uses: vsoch/pull-request-action@1.0.18
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PULL_REQUEST_BRANCH: "develop"
+          PULL_REQUEST_TITLE: ${{ steps.extract_branch.outputs.branch }}
+          PULL_REQUEST_DRAFT: true
+          PULL_REQUEST_BODY: |
+            # ISSUE INFORMATION
+
+            <!--- Update the GitHub issue below --->
+            Please check the following GitHub issues to find out more about this PR:
+            - https://github.com/andresionek91/LIVE001-Criando-Lambda-Functions-para-Ingerir-Dados-de-APIs/issues/<issue number>
+
+            # Checklist
+            - [ ] Does the commit messages reference the GitHub issue? (i.e. ISSUE-1/commit message)
+            - [ ] Does the commit message explain the change made?
+            - [ ] Did you deploy to staging/UAT?
+            - [ ] Were the changes approved by the stakeholders?
+
+            ## What?
+            <!--- Please describe in detail what this PR does. -->
+            <!--- Add a list of changes if needed -->
+
+            ## Why?
+            <!--- One sentence describing why this is necessary. -->
+
+            ## How?
+            <!--- High level description of implementation. -->
+
+            ## Testing?
+            <!--- Did you write tests? Describe how you tested it. -->
+
+            ## Documentation?
+            <!--- Does this change requires updates to documentation? Please add links to docs if needed. -->
+
+            ## Anything Else?
+            <!--- Add any extra information that might be useful for a reviewer. -->
+
+
+
+
+
+
+
+
+
+
+
