@@ -1,4 +1,5 @@
-# LIVE001 - AWS Lambda para Ingerir Dados de APIs
+# AWS Lambda para Ingerir Dados de APIs
+### Livbes 01, 03 e 05
 
 * Fazer o deploy de uma função lambda com infraestrutura como código
 * Lambda vai numa API externa e extrai dados e salva para o S3 (data lake)
